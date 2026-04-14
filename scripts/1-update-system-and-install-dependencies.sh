@@ -11,4 +11,6 @@ sudo systemctl enable docker
 sudo systemctl start docker
 sudo usermod -aG docker $USER
 
+sudo apt install -y docker-buildx-plugin docker-compose-plugin
+
 echo "=== Dependencies installed successfully ==="
