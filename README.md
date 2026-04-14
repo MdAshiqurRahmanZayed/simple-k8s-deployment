@@ -158,8 +158,3 @@ kubectl describe node <node-name>
 kubectl get svc -n production
 # Check if nodePort 30002 is open in security group
 ```
-
-## Author
-- Name: Zayed
-- GitHub: [Your GitHub Link]
-- Docker Hub: mdzayed/assignment_10_ostad_devops:v4
