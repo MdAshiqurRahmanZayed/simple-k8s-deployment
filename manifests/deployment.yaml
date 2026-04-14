@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: mdzayed/assignment_10_ostad_devops:v4
+        image: mdzayed/assignment_10_ostad_devops:v5
         ports:
         - containerPort: 5000
           name: http
