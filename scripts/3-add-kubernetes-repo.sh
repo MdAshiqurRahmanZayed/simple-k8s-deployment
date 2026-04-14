@@ -3,6 +3,9 @@ set -e
 
 echo "=== Step 3: Add Kubernetes Repository ==="
 
+sudo rm -f /etc/apt/sources.list.d/kubernetes.list
+sudo rm -f /usr/share/keyrings/kubernetes-archive-keyring.gpg
+
 sudo apt-get update
 sudo apt-get install -y apt-transport-https ca-certificates curl gpg
 
