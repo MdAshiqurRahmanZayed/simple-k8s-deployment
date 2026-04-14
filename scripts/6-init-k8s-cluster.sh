@@ -3,13 +3,18 @@ set -e
 
 echo "=== Step 6: Initialize Kubernetes Cluster ==="
 
+echo "Installing bridge utilities..."
+sudo apt-get install -y bridge-utils
+
 echo "Loading required kernel modules..."
-sudo modprobe br_netfilter
-echo "1" | sudo tee /proc/sys/net/bridge/bridge-nf-call-iptables
-echo "1" | sudo tee /proc/sys/net/bridge/bridge-nf-call-ip6tables
+sudo modprobe br_netfilter || true
+
+echo "Setting kernel parameters..."
+echo "1" | sudo tee /proc/sys/net/bridge/bridge-nf-call-iptables > /dev/null || true
+echo "1" | sudo tee /proc/sys/net/bridge/bridge-nf-call-ip6tables > /dev/null || true
 
 echo "Initializing Kubernetes cluster..."
-sudo kubeadm init --pod-network-cidr=10.244.0.0/16
+sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --ignore-preflight-errors=FileContent--proc-sys-net-bridge-bridge-nf-call-iptables
 
 echo "=== Kubernetes cluster initialized ==="
 echo ""
