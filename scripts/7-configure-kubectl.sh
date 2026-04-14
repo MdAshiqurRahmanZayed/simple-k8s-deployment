@@ -7,5 +7,15 @@ mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
-echo "=== kubectl configured successfully ==="
-kubectl get nodes
+echo "=== Checking control plane status ==="
+echo "Waiting for API server to start..."
+sleep 30
+
+echo "=== Control plane pods ==="
+sudo kubectl get pods -n kube-system
+
+echo ""
+echo "=== Testing kubectl connection ==="
+kubectl get nodes --request-timeout=10s || echo "API server not ready yet"
+
+echo "=== kubectl configured ==="
