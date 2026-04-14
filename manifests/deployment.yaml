@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+  namespace: production
+  labels:
+    app: ostad-devops
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ostad-devops
+  template:
+    metadata:
+      labels:
+        app: ostad-devops
+    spec:
+      containers:
+      - name: app
+        image: mdzayed/assignment_10_ostad_devops:v4
+        ports:
+        - containerPort: 5000
+          name: http
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 5000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 5

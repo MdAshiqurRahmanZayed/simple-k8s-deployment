@@ -1,0 +1,9 @@
+aws_region        = "us-east-1"
+aws_profile       = "default"
+instance_type     = "t3.large"
+volume_size       = 30
+instance_name     = "simple-k8s-node"
+ssh_key_name      = "your-key-pair-name"
+vpc_id            = "vpc-xxxxxxxx"
+subnet_id         = "subnet-xxxxxxxx"
+eip_allocation_id = "eipalloc-xxxxxxxx"
