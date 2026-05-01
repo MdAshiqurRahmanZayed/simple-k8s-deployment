@@ -21,8 +21,8 @@ COPY --from=builder /app/dist ./dist
 COPY src/server.js ./
 COPY src/public ./public
 
-EXPOSE 5000
+EXPOSE 80
 
-ENV PORT=5000
+ENV PORT=80
 
 CMD ["node", "server.js"]
